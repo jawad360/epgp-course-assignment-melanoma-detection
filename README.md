@@ -1,52 +1,29 @@
-# Project Name
-> Outline a brief description of your project.
+# Melanoma detection with CNN
+Melanoma is a type of cancer that can be deadly if not detected early. It accounts for 75% of skin cancer deaths. A solution that can evaluate images and alert dermatologists about the presence of melanoma has the potential to reduce a lot of manual effort needed in diagnosis.
 
+## Approaches
+We have tried three different model approaches and evaluate the results of each of them to find the best one
 
-## Table of Contents
-* [General Info](#general-information)
-* [Technologies Used](#technologies-used)
-* [Conclusions](#conclusions)
-* [Acknowledgements](#acknowledgements)
+### 1st Approach
+We built a simple model having `2 32 features convolution -> max pooling -> 2 64 features convolution -> max pooling -> Flatten -> FC (512) -> Softmax`
 
-<!-- You can include any other section that is pertinent to your problem -->
+This model was overfitting with a train accuracy of 0.93 and validation accuracy of 0.50. We trained it for 20 epochs
 
-## General Information
-- Provide general information about your project here.
-- What is the background of your project?
-- What is the business probem that your project is trying to solve?
-- What is the dataset that is being used?
+### 2nd Approach
+In the second model we added a dropout layer and also a data augmentation layer. We built a simple model having `Augmentation layer -> 2 32 features convolution -> max pooling -> Dropout -> 2 64 features convolution -> max pooling -> dropout -> Flatten -> FC (512) -> Softmax`
 
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+This model was not overfitting but the train and test accuracy was quite low below 0.50. The model was again trained for 20 epochs
+
+### 3rd Approach
+Before building a model we found out that there a huge class imbalance problem so we added extra 500 images in each classes using Augmentor library
+
+Once we had enough data we built a fairly dense model having `2 32 features convolution -> max pooling -> Dropout -> 2 64 features convolution -> max pooling -> dropout -> 2 128 features convolution -> max pooling -> dropout -> Flatten -> FC (512) -> Softmax`
+
+With this model it was not overfitting and also the train and validation accuracy was quite high at **0.85**
+
 
 ## Conclusions
-- Conclusion 1 from the analysis
-- Conclusion 2 from the analysis
-- Conclusion 3 from the analysis
-- Conclusion 4 from the analysis
-
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
-
-
-## Technologies Used
-- library - version 1.0
-- library - version 2.0
-- library - version 3.0
-
-<!-- As the libraries versions keep on changing, it is recommended to mention the version of library used in this project -->
-
-## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- References if any...
-- This project was based on [this tutorial](https://www.example.com).
-
+> We went ahead with the third model which is having accuracy of 0.85
 
 ## Contact
-Created by [@githubusername] - feel free to contact me!
-
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+Created by [@jawad360](https://github.com/jawad360) - feel free to contact me!
